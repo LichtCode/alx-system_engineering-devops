@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Displays file's PID.
+
+echo $$
