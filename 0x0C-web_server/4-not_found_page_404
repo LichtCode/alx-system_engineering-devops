@@ -18,10 +18,10 @@ sudo touch /var/www/html/404.html
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
 
 # Update Nginx configuration to use custom 404 error page
-sudo sed -i '/^}$/i \ \n\terror_page 404 /404.html;\n\n\tlocation /404.html {\n\t\tinternal;\n\t}' /etc/nginx/sites--available/default
+sudo sed -i '/^}$/i \ \n\terror_page 404 /404.html;\n\n\tlocation /404.html {\n\t\tinternal;\n\t}' /etc/nginx/sites-available/default
 
 # Test Nginx configuration for syntax errors
 sudo nginx -t
 
 # Restart Nginx to apply changes
-service nginx restart
+sudo service nginx restart

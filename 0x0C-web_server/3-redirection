@@ -16,4 +16,4 @@ sudo sed -i '/^}$/i \ \n\trewrite ^/redirect_me$ https:\/\/www.youtube.com\/watc
 sudo nginx -t
 
 # Restart Nginx to apply changes
-service nginx restart
+sudo service nginx restart
