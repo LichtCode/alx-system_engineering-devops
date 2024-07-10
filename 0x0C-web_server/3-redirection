@@ -1,16 +1,25 @@
 #!/usr/bin/env bash
 # Install nginx web server
-sudo apt-get update && sudo apt-get install nginx
+sudo apt-get update && sudo apt-get install nginx -y
 
 # Start nginx service
 sudo service nginx start
 
-# Create index.html with "Hello World!"
-sudo touch /var/www/html/index.html
-echo "Hello World!" | sudo tee /var/www/html/index.html
+# allowing nginx on firewall
+sudo ufw allow 'Nginx HTTP'
 
-# Update Nginx configuration to add redirection
-sudo sed -i '/^}$/i \ \n\trewrite ^/redirect_me$ https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+# Give the user ownership to website files for easy editing
+sudo chown -R "$USER":"$USER" /var/www/html
+sudo chmod -R 755 /var/www
+
+# Backup default index
+cp /var/www/html/index.nginx-debian.html /var/www/html/index.nginx-debian.html.bckp
+
+# Creating new index
+echo -e "Hello World!" > /var/www/html/index.nginx-debian.html
+
+# Setting up /redirect_me to a youtube video
+sudo sed -i '24i\       rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
 
 # Test Nginx configuration for syntax errors
 sudo nginx -t
