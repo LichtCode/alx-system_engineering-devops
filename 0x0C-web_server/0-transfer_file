@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#Script that transfers a file from our client to a server
+# Script that transfers a file from our client to a server
 # Check if all parameters are provided
 if [ $# -lt 4 ]
 then
