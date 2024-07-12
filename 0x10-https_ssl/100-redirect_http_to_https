@@ -35,20 +35,20 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 
-frontend  beloveyeboah-frontend-http
+frontend  haslichtcode-frontend-http
         bind *:80
         mode http
         http-request set-header X-Forwarded-Proto http
         http-request redirect scheme https code 301 unless { ssl_fc }
-        default_backend beloveyeboah-backend
+        default_backend haslichtcode-backend
 
-frontend  beloveyeboah-frontend-https
-        bind *:443 ssl crt /etc/letsencrypt/live/www.kasty.tech/www.kasty.tech.pem
+frontend  haslichtcode-frontend-https
+        bind *:443 ssl crt /etc/haproxy/certs/www.haslcihtcode.tech.pem
         http-request set-header X-Forwarded-Proto https
         http-request redirect scheme https code 301 unless { ssl_fc }
-        default_backend beloveyeboah-backend
+        default_backend haslichtcode-backend
 
-backend beloveyeboah-backend
+backend haslichtcode-backend
         balance roundrobin
-        server 255269-web-01 54.83.139.74:80 check
-        server 255269-web-02 54.237.76.244:80 check
+        server 207676-web-01 52.23.245.178:80 check
+        server 207676-web-02 52.23.222.215:80 check
