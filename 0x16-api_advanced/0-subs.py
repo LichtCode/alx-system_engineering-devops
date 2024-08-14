@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-""" this sends a query to Reddit API"""
+"""
+    this sends a query to Reddit API
+"""
+
 import requests
 
 
