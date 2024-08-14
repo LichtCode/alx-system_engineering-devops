@@ -21,3 +21,4 @@ def number_of_subscribers(subreddit):
                 return response.get('data').get('subscribers')
             except (AttributeError, TypeError):
                 return 0
+
