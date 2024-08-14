@@ -11,9 +11,10 @@ def number_of_subscribers(subreddit):
     elif isinstance(subreddit, str):
         headers = {"User-Agent": "Mozilla/5.0"}
         url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
-        req = requests.get(url, headers=headers)
-        response = req.json()
-        try:
-            return response.get('data').get('subscribers')
-        except (AttributeError, TypeError):
-            return 0
+        req = requests.get(url, headers=headers, allow_redirects=False)
+        if req.status_code == 200:
+            response = req.json()
+            try:
+                return response.get('data').get('subscribers')
+            except (AttributeError, TypeError):
+                return 0
