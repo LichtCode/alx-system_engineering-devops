@@ -9,7 +9,7 @@ def number_of_subscribers(subreddit):
     if subreddit is None:
         return 0
     elif isinstance(subreddit, str):
-        headers = {"User-Agent": "beloveyeboah"}
+        headers = {"User-Agent": "Mozilla/5.0"}
         url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
         req = requests.get(url, headers=headers)
         response = req.json()
