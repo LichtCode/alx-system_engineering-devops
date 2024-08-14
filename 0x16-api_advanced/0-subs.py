@@ -1,23 +1,19 @@
 #!/usr/bin/python3
 """
-    this sends a query to Reddit API
+Script that queries subscribers on a given Reddit subreddit.
 """
 
 import requests
 
 
 def number_of_subscribers(subreddit):
-    """Makes a request to Reddit API to get the number of subscribers."""
-
-    if subreddit is None:
+    """Return the total number of subscribers on a given subreddit."""
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    headers = {"User-Agent": "Mozilla/5.0"}
+    response = requests.get(url, headers=headers, allow_redirects=False)
+    if response.status_code == 200:
+        data = response.json()
+        subscribers = data['data']['subscribers']
+        return subscribers
+    else:
         return 0
-    elif isinstance(subreddit, str):
-        headers = {"User-Agent": "Mozilla/5.0"}
-        url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
-        req = requests.get(url, headers=headers, allow_redirects=False)
-        if req.status_code == 200:
-            response = req.json()
-            try:
-                return response.get('data').get('subscribers')
-            except (AttributeError, TypeError):
-                return 0
