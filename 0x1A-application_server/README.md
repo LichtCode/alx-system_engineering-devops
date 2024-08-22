@@ -1,1 +1,3 @@
-# APPLICATION SERVER
+# 0x1A. Application server
+
+# Tasks
